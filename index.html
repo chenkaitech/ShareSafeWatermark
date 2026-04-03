@@ -3,56 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ShareSafeWatermark · ID Watermark</title>
-<meta name="description" content="ShareSafeWatermark · Watermark ID & document photos for safer sharing. 证件水印保护 · 分享前先加用途水印，降低盗用风险。">
+<title>ShareSafeWatermark · Safe Watermark & Privacy Cleanup</title>
+<meta name="description" content="ShareSafeWatermark helps you watermark sensitive photos and remove EXIF/GPS/device metadata before sharing. 安全水印：批量加水印 + 清理 EXIF/GPS/设备信息，全程本地处理。">
 <link rel="icon" href="favicon.ico">
 <style>
 :root{
   --bg:#16171E; --surface:#1E1F27; --text:#E8EAF4; --text2:#B4B8C9; --blue:#7DA6FF;
-  --joy:#FFD54F; --calm:#4DA8FF; --anx:#FF7043; --sad:#7E57C2; --ener:#2ECC71;
+  --good:#2ECC71; --warn:#FF7043; --calm:#4DA8FF; --joy:#FFD54F; --sad:#7E57C2;
 }
-*{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--text);
-font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, Noto Sans, "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, Noto Sans, "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;}
 a{color:var(--blue);text-decoration:none}
 .container{max-width:1100px;margin:0 auto;padding:40px 24px}
 nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800}
 .brand img.icon{width:40px;height:40px;border-radius:12px}
+.nav-links{display:flex;gap:18px;align-items:center}
+.nav-links a{color:var(--text2);font-weight:700}
+.nav-links a:hover{color:var(--text)}
 .lang-switch{display:flex;gap:8px;background:var(--surface);border-radius:12px;padding:6px}
-.lang-switch button{all:unset;cursor:pointer;padding:6px 14px;border-radius:10px;color:var(--text2);font-weight:600}
+.lang-switch button{all:unset;cursor:pointer;padding:6px 14px;border-radius:10px;color:var(--text2);font-weight:800}
 .lang-switch button.active{background:var(--blue);color:#0B1220}
-.hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:36px;align-items:center;margin-top:40px}
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;margin-top:40px}
 .hero h1{font-size:40px;line-height:1.1;margin:0 0 16px}
-.hero p.lead{color:var(--text2);font-size:18px;margin:0 0 24px}
+.hero p.lead{color:var(--text2);font-size:18px;margin:0 0 24px;line-height:1.7}
+
 .cta{display:flex;gap:12px;flex-wrap:wrap}
-.button{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#0B1220;font-weight:700;
+.button{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#0B1220;font-weight:900;
   padding:14px 22px;border-radius:14px;box-shadow:0 10px 30px rgba(125,166,255,.25);}
 .button.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+
 .card{background:var(--surface);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
 .section{margin-top:80px}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-.tag{display:inline-block;padding:6px 10px;border-radius:8px;font-size:13px}
-.sample{width:100%;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.35);background:#0f1118;aspect-ratio:9/19.5;object-fit:cover}
+.tag{display:inline-block;padding:6px 10px;border-radius:8px;font-size:13px;font-weight:800}
 .footer{margin-top:80px;color:var(--text2);font-size:14px;border-top:1px solid rgba(255,255,255,.08);padding:32px 0}
-.colorbar{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--joy),var(--anx),var(--ener),var(--calm),var(--sad));}
+
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
 .gallery img{width:100%;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.35);background:#0f1118;aspect-ratio:9/19.5;object-fit:cover}
-@media (max-width:960px){ .hero{grid-template-columns:1fr} }
 
-.nav-links{display:flex;gap:18px;align-items:center}
-.nav-links a{color:var(--text2);font-weight:600}
-.nav-links a:hover{color:var(--text)}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--text2);font-weight:700;font-size:13px}
+
+@media (max-width:960px){ .hero{grid-template-columns:1fr} }
 </style>
 </head>
+
 <body>
 <div class="container">
   <nav>
     <div class="brand">
       <img class="icon" src="app_icon.png" alt="ShareSafeWatermark icon">
-      <span>ShareSafeWatermark</span>
+      <span>ShareSafeWatermark · 安全水印</span>
     </div>
     <div class="nav-links">
+      <a href="#features" data-en="Features" data-zh="功能"></a>
       <a href="#privacy" data-en="Privacy" data-zh="隐私"></a>
       <a href="#support" data-en="Support" data-zh="支持"></a>
     </div>
@@ -64,70 +72,104 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
 
   <section class="hero">
     <div>
-      <h1 data-en="Watermark ID & document photos for safer sharing"
-          data-zh="分享证件前先加水印，更安全"></h1>
+      <h1
+        data-en="Watermark sensitive photos & remove hidden metadata before sharing"
+        data-zh="敏感照片加水印 + 清理元数据，分享更安心"></h1>
 
       <p class="lead"
-         data-en="Add purpose watermarks, timestamps, and quick redaction to reduce misuse risks when you share ID cards, passports, or sensitive documents."
-         data-zh="为身份证/护照/驾照等敏感照片添加「用途声明水印 + 时间戳 + 快速打码遮挡」，降低被盗用、转发、二次使用风险。"></p>
+        data-en="Scan documents or select up to 50 photos at once. Add centered or tiled watermarks, then remove EXIF/GPS/device details — everything runs on-device."
+        data-zh="文档扫描或批量选图（最多 50 张），支持居中/平铺水印与实时预览；导出前一键清除 EXIF/GPS/设备信息，全程本地处理不上传。"></p>
 
       <div class="cta">
-        <a href="#" class="button" data-en="Get on the App Store" data-zh="App Store 下载"></a>
+        <a href="YOUR_APPSTORE_LINK" class="button" data-en="Get on the App Store" data-zh="前往 App Store"></a>
         <a href="#features" class="button ghost" data-en="Learn more" data-zh="了解功能"></a>
       </div>
 
-      <div style="margin-top:24px;color:var(--text2)">
-        <span>• </span><span data-en="Privacy-first, on-device processing" data-zh="隐私优先，尽量本地处理"></span>
+      <div class="pills">
+        <div class="pill" data-en="Up to 50 photos" data-zh="最多 50 张批量"></div>
+        <div class="pill" data-en="Centered / Tiled watermark" data-zh="居中/平铺水印"></div>
+        <div class="pill" data-en="EXIF · GPS · Device cleanup" data-zh="清理 EXIF/GPS/设备"></div>
+        <div class="pill" data-en="On-device processing" data-zh="本地处理不上传"></div>
       </div>
-      <div style="margin-top:16px" class="colorbar" aria-hidden="true"></div>
+    </div>
+
+    <div class="card">
+      <div class="tag" style="background:rgba(46,204,113,.18);color:var(--good)"
+        data-en="Best for" data-zh="适用场景"></div>
+      <div style="margin-top:14px;color:var(--text2);line-height:1.8">
+        <div data-en="• ID card / passport / driver’s license submissions" data-zh="• 身份证/护照/驾照等材料提交"></div>
+        <div data-en="• Account verification & onboarding documents" data-zh="• 实名认证/入职/开户资料"></div>
+        <div data-en="• Prevent misuse & reduce privacy leakage" data-zh="• 防盗用，降低隐私泄露风险"></div>
+      </div>
     </div>
   </section>
 
   <section id="features" class="section">
-    <h2 data-en="Core features" data-zh="核心功能"></h2>
-    <div class="grid-3" style="margin-top:24px">
+    <h2 data-en="Core modules" data-zh="五大核心模块"></h2>
 
+    <div class="grid-3" style="margin-top:24px">
       <div class="card">
         <div class="tag" style="background:rgba(77,168,255,.18);color:var(--calm)"
-             data-en="Purpose watermark" data-zh="用途声明水印"></div>
-        <h3 style="margin:12px 0"
-            data-en="Purpose templates that people actually use"
-            data-zh="可直接用的用途模板"></h3>
-        <p class="text2"
-           data-en='Examples: “For verification only”, “For onboarding only”, “For account opening only”. Make your intent clear before you send.'
-           data-zh="示例：「仅供实名认证」「仅供入职办理」「仅供开户办理」。分享前把用途写清楚，减少被挪用风险。"></p>
+          data-en="Import" data-zh="导入"></div>
+        <h3 style="margin:12px 0" data-en="Document scan + batch selection" data-zh="文档扫描 + 批量相册选择"></h3>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="Scan paper documents with auto perspective correction, or pick up to 50 photos from your library in one go."
+          data-zh="集成文档扫描自动矫正；相册一次选择多张图片，最高支持 50 张，提高处理效率。"></p>
       </div>
 
       <div class="card">
         <div class="tag" style="background:rgba(255,213,79,.18);color:var(--joy)"
-             data-en="Watermark controls" data-zh="水印可调"></div>
-        <h3 style="margin:12px 0"
-            data-en="Size · opacity · angle · tile"
-            data-zh="大小·透明度·角度·平铺"></h3>
-        <p class="text2"
-           data-en="Fine-tune visibility and coverage. Use corner placement or repeating patterns to discourage cropping."
-           data-zh="自由调整清晰度与覆盖范围。支持角落放置或平铺重复，降低被裁剪绕过的可能。"></p>
+          data-en="Watermark" data-zh="水印编辑"></div>
+        <h3 style="margin:12px 0" data-en="Live preview across all images" data-zh="左右滑动实时预览"></h3>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="Swipe left/right to preview every image instantly. Tune opacity (0.05–1.0), font size, and color."
+          data-zh="编辑页左右横滑快速预览所有图片效果；支持透明度（0.05–1.0）、字号与调色盘颜色。"></p>
       </div>
 
       <div class="card">
-        <div class="tag" style="background:rgba(46,204,113,.18);color:var(--ener)"
-             data-en="Redaction" data-zh="打码遮挡"></div>
-        <h3 style="margin:12px 0"
-            data-en="Quickly cover sensitive areas"
-            data-zh="快速遮挡敏感信息"></h3>
-        <p class="text2"
-           data-en="Mask ID numbers and sensitive lines fast, then export a safe-to-share version instead of the original."
-           data-zh="对号码区域与敏感信息一键遮挡，导出可分享版本，避免误发原图。"></p>
+        <div class="tag" style="background:rgba(255,112,67,.18);color:var(--warn)"
+          data-en="Layout" data-zh="布局模式"></div>
+        <h3 style="margin:12px 0" data-en="Centered or tiled (harder to crop)" data-zh="居中或全屏平铺（更抗裁剪）"></h3>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="Choose a single centered watermark or a full-screen tiled pattern to discourage cropping and reuse."
+          data-zh="支持单个居中或全屏平铺两种布局，平铺更难被裁剪绕过，提升防盗用效果。"></p>
       </div>
 
+      <div class="card">
+        <div class="tag" style="background:rgba(126,87,194,.18);color:var(--sad)"
+          data-en="Privacy cleanup" data-zh="隐私清理"></div>
+        <h3 style="margin:12px 0" data-en="Remove EXIF, GPS & device details" data-zh="清除 EXIF、定位与设备指纹"></h3>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="Before export, remove hidden metadata like shooting time/params, GPS coordinates, and device model/vendor info."
+          data-zh="导出前一键移除 EXIF（时间/参数）、GPS 经纬度，以及设备型号/厂家等信息，降低隐私泄露。"></p>
+      </div>
+
+      <div class="card">
+        <div class="tag" style="background:rgba(46,204,113,.18);color:var(--good)"
+          data-en="Export & share" data-zh="导出分享"></div>
+        <h3 style="margin:12px 0" data-en="Batch save + system share sheet" data-zh="批量保存 + 系统级分享"></h3>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="Save all processed images back to Photos with progress, or share directly via AirDrop, Mail, and more."
+          data-zh="支持一键批量保存并显示进度；也可直接通过系统分享发送到微信/隔空投送/邮件等，无需先保存。"></p>
+      </div>
+
+      <div class="card">
+        <div class="tag" style="background:rgba(77,168,255,.18);color:var(--calm)"
+          data-en="History" data-zh="历史记录"></div>
+        <h3 style="margin:12px 0" data-en="Task history with cleanup" data-zh="任务记录回溯与清理"></h3>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="Automatically keeps your processed tasks. Review details later, and delete expired records to free space."
+          data-zh="自动保存处理任务，方便回溯查看；支持删除过期记录释放空间，保持设备整洁。"></p>
+      </div>
     </div>
   </section>
 
   <section class="section">
     <h2 data-en="Screenshots" data-zh="界面预览"></h2>
     <p class="lead"
-       data-en="Replace the four images below with your actual App Store screenshots."
-       data-zh="将下方四张占位图替换为你的真实 App Store 截图。"></p>
+      data-en="Replace the four images below with your real App Store screenshots."
+      data-zh="将下方四张占位图替换为你的真实 App Store 截图。"></p>
+
     <div class="gallery" style="margin-top:16px">
       <img src="en_1.png" data-en-src="en_1.png" data-zh-src="zh_1.png" alt="screenshot 1">
       <img src="en_2.png" data-en-src="en_2.png" data-zh-src="zh_2.png" alt="screenshot 2">
@@ -138,44 +180,40 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
 
   <section class="section">
     <div class="grid-2">
-
       <div class="card">
         <h2 id="privacy" data-en="Privacy" data-zh="隐私"></h2>
-        <p class="text2"
-           data-en="Your photos are processed locally on your device whenever possible."
-           data-zh="图片会尽量在本机完成处理。"></p>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="ShareSafeWatermark is designed with privacy in mind. All watermarking and metadata cleanup runs on your device."
+          data-zh="ShareSafeWatermark 以隐私优先为设计原则：加水印与元数据清理均在本机运行，不需要上传服务器。"></p>
 
-        <ul style="margin:12px 0 0 18px; color: var(--text2); line-height:1.7">
-          <li data-en="We do not request access to your contacts, location, or microphone."
-              data-zh="我们不会请求访问你的联系人、位置信息或麦克风。"></li>
-          <li data-en="We only use Photos access when you choose to import or save images."
-              data-zh="仅在你选择导入/保存图片时使用相册权限。"></li>
-          <li data-en="We do not track device identifiers or behavior data."
-              data-zh="我们不会追踪设备标识或行为数据。"></li>
+        <ul style="margin:12px 0 0 18px; color: var(--text2); line-height:1.8">
+          <li data-en="EXIF removal: shooting params & timestamps" data-zh="清除 EXIF：拍摄参数与时间等信息"></li>
+          <li data-en="GPS removal: location coordinates" data-zh="清除定位：GPS 经纬度信息"></li>
+          <li data-en="Device detail removal: model/vendor info" data-zh="清除设备细节：机型/厂家等设备信息"></li>
         </ul>
       </div>
 
       <div class="card">
         <h2 id="support" data-en="Support" data-zh="支持"></h2>
-        <p class="text2"
-           data-en="Questions or feedback? Email us, or open an issue on GitHub."
-           data-zh="有问题或建议？欢迎发送邮件，或在 GitHub 提交 Issue。"></p>
+        <p style="color:var(--text2);line-height:1.7"
+          data-en="Questions or feedback? Email us, or open an issue on GitHub."
+          data-zh="有问题或建议？欢迎发送邮件，或在 GitHub 提交 Issue。"></p>
+
         <p><a href="mailto:freesysck@outlook.com">freesysck@outlook.com</a></p>
         <p>
-          <a href="https://github.com/chenkaitech/ShareSafeWatermark" target="_blank" rel="noopener"
+          <a href="https://github.com/yourname/ShareSafeWatermark" target="_blank" rel="noopener"
              data-en="GitHub Repository" data-zh="GitHub 仓库"></a><br>
-          <a href="https://github.com/chenkaitech/ShareSafeWatermark/issues" target="_blank" rel="noopener"
+          <a href="https://github.com/yourname/ShareSafeWatermark/issues" target="_blank" rel="noopener"
              data-en="Report an issue on GitHub" data-zh="在 GitHub 提交问题"></a>
         </p>
       </div>
-
     </div>
   </section>
 
   <footer class="footer">
     <div class="grid-2">
       <div>
-        <strong>ShareSafeWatermark</strong><br>
+        <strong>ShareSafeWatermark · 安全水印</strong><br>
         <span data-en="© 2026 CXY Studio. All rights reserved."
               data-zh="© 2026 CXY Studio。保留所有权利。"></span>
       </div>
@@ -194,8 +232,8 @@ function setLang(lang){
   document.querySelectorAll("[data-en]").forEach(el=>{
     const text = el.getAttribute(lang === "zh" ? "data-zh" : "data-en");
     if(text!==null){ el.textContent = text; }
-    swapLangImages(lang);
   });
+  swapLangImages(lang);
   document.getElementById("btn-en").classList.toggle("active", lang==="en");
   document.getElementById("btn-zh").classList.toggle("active", lang==="zh");
   localStorage.setItem("sharesafe-lang", lang);
